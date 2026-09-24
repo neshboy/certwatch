@@ -1,0 +1,44 @@
+{
+  "paypa1.com": [
+    {
+      "id": 100,
+      "common_name": "paypa1.com",
+      "name_value": "paypa1.com",
+      "issuer_name": "C=US, O=Let's Encrypt, CN=YR2",
+      "not_before": "2026-08-01T00:00:00"
+    },
+    {
+      "id": 150,
+      "common_name": "paypa1.com",
+      "name_value": "paypa1.com",
+      "issuer_name": "C=US, O=Let's Encrypt, CN=YR2",
+      "not_before": "2026-09-20T00:00:00"
+    }
+  ],
+  "paypal-secure.com": [
+    {
+      "id": 200,
+      "common_name": "paypal-secure.com",
+      "name_value": "paypal-secure.com",
+      "issuer_name": "C=US, O=Let's Encrypt, CN=YR2",
+      "not_before": "2026-07-15T00:00:00"
+    },
+    {
+      "id": 201,
+      "common_name": "paypal-secure.com",
+      "name_value": "paypal-secure.com",
+      "issuer_name": "C=US, O=Let's Encrypt, CN=YR2",
+      "not_before": "2026-07-16T00:00:00"
+    }
+  ],
+  "secure-paypal.com": [
+    {
+      "id": 300,
+      "common_name": "secure-paypal.com",
+      "name_value": "secure-paypal.com",
+      "issuer_name": "C=US, O=Let's Encrypt, CN=YR2",
+      "not_before": "2026-09-22T00:00:00"
+    }
+  ],
+  "paypal-support.com": []
+}

@@ -1,0 +1,8 @@
+{
+  "lastScan": "2026-09-01T00:00:00.000Z",
+  "brand": "paypal.com",
+  "seen": {
+    "paypa1.com": [100],
+    "paypal-secure.com": [200, 201]
+  }
+}
