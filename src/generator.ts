@@ -148,8 +148,8 @@ export function generateInsertionTypos(label: string): Array<{ label: string; no
 /** Single-character deletion typos, e.g. "paypal" -> "paypl". */
 export function generateDeletionTypos(label: string): Array<{ label: string; note: string }> {
   const out: Array<{ label: string; note: string }> = [];
+  if (label.length <= 1) return out;
   for (let i = 0; i < label.length; i++) {
-    if (label.length <= 1) continue;
     const variant = label.slice(0, i) + label.slice(i + 1);
     out.push({ label: variant, note: `typo: dropped "${label[i]}" at position ${i}` });
   }

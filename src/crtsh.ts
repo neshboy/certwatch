@@ -69,15 +69,23 @@ async function queryCrtSh(qValue: string, options?: CrtShClientOptions): Promise
     return [];
   }
 
+  let parsed: unknown;
   try {
-    const parsed = JSON.parse(text);
-    return Array.isArray(parsed) ? (parsed as CrtShCertificate[]) : [];
+    parsed = JSON.parse(text);
   } catch {
     // crt.sh occasionally returns non-JSON (HTML error/interstitial pages)
     // when it's under heavy load. We surface that as "no usable data this
     // round" rather than crashing the whole scan - callers can retry later.
     throw new Error(`crt.sh returned a non-JSON response for query "${qValue}" (it may be overloaded - try again later)`);
   }
+
+  if (!Array.isArray(parsed)) {
+    // crt.sh returns a JSON object (e.g. {"Error":"canceling statement due
+    // to statement timeout"}) instead of an array when the query itself
+    // failed server-side. Treat that as a failure too, not as "no results".
+    throw new Error(`crt.sh returned an unexpected JSON shape for query "${qValue}" (expected an array): ${text.slice(0, 200)}`);
+  }
+  return parsed as CrtShCertificate[];
 }
 
 /** Query crt.sh for an exact domain name. */

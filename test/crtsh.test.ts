@@ -67,6 +67,14 @@ describe("queryDomain", () => {
     const fetchImpl = mockFetchOnce({ ok: true, body: "<html>Service Unavailable</html>" });
     await expect(queryDomain("paypal.com", { fetchImpl })).rejects.toThrow(/non-JSON|overloaded/);
   });
+
+  it("throws a descriptive error when crt.sh returns a valid JSON error object instead of an array", async () => {
+    const fetchImpl = mockFetchOnce({
+      ok: true,
+      body: JSON.stringify({ Error: "canceling statement due to statement timeout" }),
+    });
+    await expect(queryDomain("paypal.com", { fetchImpl })).rejects.toThrow(/unexpected JSON shape/);
+  });
 });
 
 describe("queryPattern", () => {
